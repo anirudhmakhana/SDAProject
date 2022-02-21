@@ -2,7 +2,7 @@ package com.plcoding.spotifycloneyt.ui.viewmodels
 
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat.METADATA_KEY_MEDIA_ID
-import androidx.hilt.lifecycle.ViewModelInject
+//import androidx.hilt.lifecycle.ViewModelInject //deprecated
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,8 +13,10 @@ import com.plcoding.spotifycloneyt.exoplayer.isPlaying
 import com.plcoding.spotifycloneyt.exoplayer.isPrepared
 import com.plcoding.spotifycloneyt.other.Constants.MEDIA_ROOT_ID
 import com.plcoding.spotifycloneyt.other.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel //use this instead deprecated, @Inject instead of @ViewModelInject
 class MainViewModel @Inject constructor(
     private val musicServiceConnection: MusicServiceConnection
 ): ViewModel(){
