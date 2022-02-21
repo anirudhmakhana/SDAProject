@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.plcoding.spotifycloneyt.R
 import com.plcoding.spotifycloneyt.data.entites.Song
-import kotlinx.android.synthetic.main.list_item.view.*
+import com.plcoding.spotifycloneyt.databinding.ListItemBinding
+//import kotlinx.android.synthetic.main.list_item.view.* // remove move to binding
 import javax.inject.Inject
 
-class SongAdapter @Inject  constructor(
-    private val glide: RequestManager
-): RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
-    class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class SongAdapter @Inject constructor(private val glide: RequestManager)
+    : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
+    class SongViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
+    //old-->class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Song>() {
         override fun areItemsTheSame(oldItem: Song, newItem: Song): Boolean {
@@ -32,24 +33,23 @@ class SongAdapter @Inject  constructor(
         get() = differ.currentList
         set(value) = differ.submitList(value)
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
-        return SongViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.list_item,
-                parent,
-                false
-            )
-        )
+        //try use binding//
+        val binding: ListItemBinding = ListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false)
+        return SongViewHolder(binding)
+        //---------------//
+        // return SongViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false))
     }
 
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val song = songs[position]
         holder.itemView.apply{
-            //binding = ResultProfileBinding
-            tvPrimary.text = song.title
-            tvSecondary.text = song.subtitle
-            glide.load(song.imageUrl).into(ivItemImage)
-
+            //change reference
+            holder.binding.tvPrimary.text = song.title
+            holder.binding.tvSecondary.text = song.subtitle
+            glide.load(song.imageUrl).into(holder.binding.ivItemImage)
+            //---------------
             setOnClickListener {
                 onItemClickListener?.let { click ->
                     click(song)
