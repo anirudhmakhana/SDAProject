@@ -64,7 +64,7 @@ class MusicService : MediaBrowserServiceCompat() {
         }
 
         val activityIntent = packageManager?.getLaunchIntentForPackage(packageName)?.let {
-            PendingIntent.getActivity(this, 0, it, 0)
+            PendingIntent.getActivity(this, 0, it, PendingIntent.FLAG_MUTABLE) //changing flag from 0 to mutable because error don't know if it help
         }
 
         mediaSession = MediaSessionCompat(this, SERVICE_TAG).apply {
