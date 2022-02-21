@@ -3,10 +3,10 @@ package com.plcoding.spotifycloneyt.di
 import android.content.Context
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.SimpleExoPlayer
+//import com.google.android.exoplayer2.SimpleExoPlayer //deprecated
 import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.exoplayer2.upstream.DefaultDataSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+//import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory //deprecated
 import com.google.android.exoplayer2.util.Util
 import com.plcoding.spotifycloneyt.data.remote.MusicDatabase
 import dagger.Module
@@ -43,6 +43,6 @@ object ServiceModule {
     @Provides
     fun provideDataSourceFactory(
         @ApplicationContext context: Context
-    ) = DefaultDataSource.Factory(context)
+    ) = DefaultDataSource.Factory(context) // deprecated,Util.getUserAgent(context, "spotifyclone"))
 
 }
