@@ -13,9 +13,7 @@ import com.plcoding.spotifycloneyt.other.Constants.NETWORK_ERROR
 import com.plcoding.spotifycloneyt.other.Event
 import com.plcoding.spotifycloneyt.other.Resource
 
-class MusicServiceConnection(
-    context: Context
-) {
+class MusicServiceConnection(context: Context) {
     private val _isConnected = MutableLiveData<Event<Resource<Boolean>>>()
     val isConnected: LiveData<Event<Resource<Boolean>>> = _isConnected
 
@@ -32,15 +30,10 @@ class MusicServiceConnection(
 
     private val mediaBrowserConnectionCallback = MediaBrowserConnectionCallback(context)
 
-    private val mediaBrowser = MediaBrowserCompat(
-        context,
-        ComponentName(
-            context,
-            MusicService::class.java
-        ),
-        mediaBrowserConnectionCallback,
-        null
-    ).apply { connect() }
+    private val mediaBrowser = MediaBrowserCompat(context,
+                ComponentName(context, MusicService::class.java),
+                mediaBrowserConnectionCallback,
+        null).apply { connect() }
 
     val transportControls: MediaControllerCompat.TransportControls
         get() = mediaController.transportControls
@@ -53,9 +46,7 @@ class MusicServiceConnection(
         mediaBrowser.unsubscribe(parentId, callback)
     }
 
-    private inner class MediaBrowserConnectionCallback(
-        private val context: Context
-    ) : MediaBrowserCompat.ConnectionCallback() {
+    private inner class MediaBrowserConnectionCallback(private val context: Context) : MediaBrowserCompat.ConnectionCallback() {
 
         override fun onConnected() {
             mediaController = MediaControllerCompat(context, mediaBrowser.sessionToken).apply {

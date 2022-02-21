@@ -8,10 +8,10 @@ import android.support.v4.media.MediaMetadataCompat
 import androidx.core.net.toUri
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource
-import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
+//import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+//import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.plcoding.spotifycloneyt.data.remote.MusicDatabase
 import com.plcoding.spotifycloneyt.exoplayer.State.*
 import kotlinx.coroutines.Dispatchers
