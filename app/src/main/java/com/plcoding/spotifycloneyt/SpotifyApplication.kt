@@ -1,8 +1,7 @@
 package com.plcoding.spotifycloneyt
 
 import android.app.Application
-import androidx.multidex.MultiDexApplication
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class SpotifyApplication: MultiDexApplication()
+class SpotifyApplication: Application()
