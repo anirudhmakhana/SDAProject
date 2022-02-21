@@ -43,6 +43,6 @@ object ServiceModule {
     @Provides
     fun provideDataSourceFactory(
         @ApplicationContext context: Context
-    ) = DefaultDataSource.Factory(context) //,Util.getUserAgent(context, "spotifyclone"))
+    ) = DefaultDataSource.Factory(context) // deprecated,Util.getUserAgent(context, "spotifyclone"))
 
 }
