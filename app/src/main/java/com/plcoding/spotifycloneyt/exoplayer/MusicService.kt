@@ -1,6 +1,7 @@
 package com.plcoding.spotifycloneyt.exoplayer
 
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
@@ -59,10 +60,10 @@ class MusicService : MediaBrowserServiceCompat() {
 
     override fun onCreate() {
         super.onCreate()
+        exoPlayer = ExoPlayer.Builder(this).build()
         serviceScope.launch {
             firebaseMusicSource.fetchMediaData()
         }
-
         val activityIntent = packageManager?.getLaunchIntentForPackage(packageName)?.let {
             PendingIntent.getActivity(this, 0, it, PendingIntent.FLAG_MUTABLE) //changing flag from 0 to mutable because error don't know if it help
         }
